@@ -1,5 +1,5 @@
 class Bike
   def working?
-    puts "its working"
+    return true
   end
 end
