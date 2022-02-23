@@ -33,8 +33,17 @@ describe DockingStation do
   end
 
   it "raises an error when the bike rack is full and bike is returned" do
-    DockingStation::DEFAULT_CAPACITY.times{ subject.bike_rack.push(Bike.new) }
+    subject.capacity.times{ subject.bike_rack.push(Bike.new) }
     expect{ subject.return_bike(Bike.new) }.to raise_error(IndexError)
+  end
+
+  it "takes a new value for capacity" do
+    ds = DockingStation.new(10)
+    expect(ds.capacity).to eq(10)
+  end
+
+  it "outputs capacity of 20 when no parameters are set" do
+    expect(subject.capacity).to eq(20)
   end
 end
 

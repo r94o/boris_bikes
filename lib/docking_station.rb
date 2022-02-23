@@ -1,11 +1,11 @@
 require './lib/bike'
 
 class DockingStation
-  attr_accessor :bike_rack
-  DEFAULT_CAPACITY = 20
+  attr_accessor :bike_rack, :capacity
 
-  def initialize()
+  def initialize(capacity = 20)
     @bike_rack = []
+    @capacity = capacity
   end
 
   def release_bike
@@ -23,6 +23,6 @@ class DockingStation
   private
 
   def full?
-    @bike_rack.length >= DEFAULT_CAPACITY
+    @bike_rack.length >= @capacity
   end
 end
