@@ -9,24 +9,15 @@ class DockingStation
   end
 
   def release_bike
-    unless @bike_rack.empty?
-      puts "Bike released"
-      return @bike_rack.pop
-    else
-      puts "Bike rack is empty"
-      raise IndexError.new
-    end
+    return @bike_rack.pop if !@bike_rack.empty? 
+    raise IndexError.new("Bike rack is empty")
   end
 
   def return_bike(bike)
-    if @bike_rack.length < @capacity
-      @bike_rack.push(bike)
-      puts "The bike has been returned"
-      return @bike_rack.length
-    else
-      puts "Bike rack is full"
-      raise IndexError.new
-    end
+    raise IndexError.new("The Bike rack is full") if @bike_rack.length >= @capacity
+    @bike_rack << bike
+    puts "The bike has been returned"
+    return @bike_rack.length
   end
 
 end
