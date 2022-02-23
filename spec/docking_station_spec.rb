@@ -22,7 +22,7 @@ describe DockingStation do
     expect(subject.return_bike(bike)).to eq (num_bikes + 1)
   end
 
-  it "does not release a bike when the bike rack is empty" do
+  it "raises an error when the bike rack is empty and a bike is requested" do
     subject.bike_rack = []
     expect{ subject.release_bike }.to raise_error(IndexError)
   end
