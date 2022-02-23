@@ -15,7 +15,7 @@ describe DockingStation do
     bike = Bike.new
     expect(bike.working?).to eq true
   end
-
+  
   it "checks that when the bike is returned" do
     bike = Bike.new
     num_bikes = subject.bike_rack.length
@@ -33,8 +33,7 @@ describe DockingStation do
   end
 
   it "raises an error when the bike rack is full and bike is returned" do
-    subject.capacity = 1
-    subject.bike_rack = [Bike.new]
+    DockingStation::DEFAULT_CAPACITY.times{ subject.bike_rack.push(Bike.new) }
     expect{ subject.return_bike(Bike.new) }.to raise_error(IndexError)
   end
 end
