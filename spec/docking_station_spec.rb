@@ -23,13 +23,19 @@ describe DockingStation do
   end
 
   it "does not release a bike when the bike rack is empty" do
-    subject.bike_rack= []
+    subject.bike_rack = []
     expect{ subject.release_bike }.to raise_error(IndexError)
   end
 
   it "does release a bike when the bike rack has at least 1 bike in" do
     subject.bike_rack = [Bike.new]
     expect(subject.release_bike).to be_an_instance_of(Bike)
+  end
+
+  it "raises an error when the bike rack is full and bike is returned" do
+    subject.capacity = 1
+    subject.bike_rack = [Bike.new]
+    expect{ subject.return_bike(Bike.new) }.to raise_error(IndexError)
   end
 end
 
